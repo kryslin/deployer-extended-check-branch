@@ -4,6 +4,7 @@ namespace Deployer;
 
 use Deployer\Type\Csv;
 
+desc('Add custom information to the release log file');
 task('deploy:extend_log', function () {
     cd('{{deploy_path}}');
     $csv = run('tail -n 1 .dep/releases');

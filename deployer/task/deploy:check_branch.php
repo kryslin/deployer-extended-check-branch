@@ -2,6 +2,8 @@
 
 namespace Deployer;
 
+use Deployer\Type\Csv;
+
 desc('Check current branch');
 task('deploy:check_branch', function () {
     cd('{{deploy_path}}');
@@ -13,7 +15,7 @@ task('deploy:check_branch', function () {
             $userName = $metainfo[3];
             $branch = get('branch') ?: 'master';
             if ($currentBranch != $branch && input()->getParameterOption('--not-check-branch') === false) {
-                throw new \RuntimeException(sprintf('Current branch (%s) deployed by "%s" is different than you try to deploy (%s). ',
+                throw new \RuntimeException(sprintf('Current branch (%s) deployed by "%s" is different than you try to deploy (%s). Add option "--not-check-branch" to skip this checking.',
                     $currentBranch, $userName, $branch));
             }
         }
